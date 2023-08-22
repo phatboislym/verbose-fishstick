@@ -1,3 +1,3 @@
 # Zuri CDT Backend
 
-- [OOP Concept Test](obstruction_detector.py)
+- [OOP Concept Test](OOP_Concept_Test)
