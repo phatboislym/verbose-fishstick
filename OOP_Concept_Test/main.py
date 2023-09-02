@@ -1,18 +1,33 @@
-from obstruction_detector import ObstructionDetector
+from obstruction_detector_ZUR000226WSG import ObstructionDetector
+
+
+def test(pointA, pointB) -> None:
+    obstruction_checker = ObstructionDetector(pointA, pointB)
+    print(f"distance: {obstruction_checker.calculate_distance():.2f} miles")
+    print("time (minutes)")
+    print(f"expected: {obstruction_checker.calculate_expected_time():.2f}")
+    print(f"elapsed: {obstruction_checker.time_from_TimeDuration:.2f}")
+
+    if obstruction_checker.check_obstruction():
+        if obstruction_checker.impenetrable():
+            print("impenetrable obstruction")
+        else:
+            print("penetrable obstruction")
+    else:
+        print("no obstruction")
+
+
+def demarcate(num: int = 25) -> None:
+    print("-" * num)
 
 
 if __name__ == '__main__':
 
     # Example usage
-    speed_of_machine = 2.5  # miles per minute (simulated)
-    distance_ab = 100  # miles (simulated)
-    time_from_TimeDuration = 41  # minutes (simulated)
+    point_a: list[float] = [37.7749, -122.4194]  # San Francisco
+    point_b: list[float] = [34.0522, -118.2437]  # Los Angeles
+    point_c: list[float] = [40.7128, -74.0060]  # New York
 
-    obstruction_checker = ObstructionDetector(speed_of_machine, distance_ab)
-    if obstruction_checker.check_obstruction(time_from_TimeDuration):
-        print("obstruction detected")
-        if (time_from_TimeDuration >=
-                obstruction_checker.calculate_expected_time() + 60):
-            print("obstruction is impenetrable")
-    else:
-        print("no obstruction detected")
+    test(point_a, point_b)
+    demarcate()
+    test(pointA=point_b, pointB=point_c)
